@@ -1,0 +1,10 @@
+data/
+models/
+*.pt
+*.pth
+*.onnx
+__pycache__/
+.venv/
+.env
+*.db
+.ipynb_checkpoints/
