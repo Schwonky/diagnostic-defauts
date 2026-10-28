@@ -1,0 +1,7 @@
+# Étape 2 : base de connaissances et tests
+pytest>=8.0
+
+# Les dépendances suivantes seront ajoutées aux prochaines étapes :
+# torch, torchvision, scikit-learn (vision)
+# rapidfuzz (symptômes)
+# fastapi, uvicorn, sqlalchemy, reportlab (application)

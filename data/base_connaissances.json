@@ -1,0 +1,714 @@
+{
+  "version": "1.0",
+  "description": "Base de connaissances AMDEC simplifiée : symptômes et défauts visuels vers composants, causes et vérifications.",
+  "echelle_poids": "0 = aucun lien, 1 = lien très fort (plausibilité estimée à partir de la littérature de maintenance)",
+  "symptomes": {
+    "grincement": {
+      "libelle": "Grincement",
+      "synonymes": [
+        "grince",
+        "grincer",
+        "crissement",
+        "crisse",
+        "couine",
+        "couinement",
+        "frottement métallique"
+      ]
+    },
+    "sifflement": {
+      "libelle": "Sifflement",
+      "synonymes": [
+        "siffle",
+        "siffler",
+        "sifflement aigu",
+        "chuintement"
+      ]
+    },
+    "claquement": {
+      "libelle": "Claquement",
+      "synonymes": [
+        "claque",
+        "cliquetis",
+        "cogne",
+        "cognement",
+        "choc",
+        "tape",
+        "clac"
+      ]
+    },
+    "vibration": {
+      "libelle": "Vibration anormale",
+      "synonymes": [
+        "vibre",
+        "vibrations",
+        "tremble",
+        "tremblement",
+        "secousse",
+        "oscillation"
+      ]
+    },
+    "surchauffe": {
+      "libelle": "Surchauffe",
+      "synonymes": [
+        "chauffe",
+        "trop chaud",
+        "brûlant",
+        "température élevée",
+        "surchauffe"
+      ]
+    },
+    "blocage": {
+      "libelle": "Blocage",
+      "synonymes": [
+        "bloqué",
+        "se bloque",
+        "coince",
+        "grippé",
+        "grippage",
+        "ne tourne plus"
+      ]
+    },
+    "perte_puissance": {
+      "libelle": "Perte de puissance",
+      "synonymes": [
+        "perd de la puissance",
+        "manque de puissance",
+        "ralentit",
+        "patine",
+        "faible rendement"
+      ]
+    },
+    "fuite": {
+      "libelle": "Fuite",
+      "synonymes": [
+        "fuit",
+        "suinte",
+        "coule",
+        "perte d'huile",
+        "flaque"
+      ]
+    },
+    "odeur_brule": {
+      "libelle": "Odeur de brûlé",
+      "synonymes": [
+        "sent le brûlé",
+        "odeur de brûlé",
+        "fumée",
+        "odeur de caoutchouc"
+      ]
+    },
+    "bruit_cyclique": {
+      "libelle": "Bruit cyclique",
+      "synonymes": [
+        "bruit régulier",
+        "bruit périodique",
+        "à chaque tour",
+        "à chaque rotation"
+      ]
+    },
+    "jeu_excessif": {
+      "libelle": "Jeu excessif",
+      "synonymes": [
+        "du jeu",
+        "prend du jeu",
+        "flotte",
+        "ballant"
+      ]
+    },
+    "conso_elevee": {
+      "libelle": "Consommation électrique élevée",
+      "synonymes": [
+        "consomme beaucoup",
+        "courant élevé",
+        "disjoncteur saute",
+        "surintensité"
+      ]
+    }
+  },
+  "defauts_visuels": {
+    "microfissures": {
+      "libelle": "Microfissures (faïençage)",
+      "classe_neu": "crazing",
+      "categorie": "fissure"
+    },
+    "piqures": {
+      "libelle": "Piqûres",
+      "classe_neu": "pitted_surface",
+      "categorie": "corrosion"
+    },
+    "rayures": {
+      "libelle": "Rayures",
+      "classe_neu": "scratches",
+      "categorie": "usure"
+    },
+    "plaques": {
+      "libelle": "Plaques / taches",
+      "classe_neu": "patches",
+      "categorie": "usure"
+    },
+    "inclusions": {
+      "libelle": "Inclusions",
+      "classe_neu": "inclusion",
+      "categorie": "anomalie de surface"
+    },
+    "calamine": {
+      "libelle": "Calamine incrustée",
+      "classe_neu": "rolled-in_scale",
+      "categorie": "anomalie de surface"
+    }
+  },
+  "composants": {
+    "roulement": {
+      "libelle": "Roulement",
+      "causes": [
+        {
+          "id": "lubrification_roulement",
+          "libelle": "Lubrification insuffisante ou dégradée",
+          "symptomes": [
+            "grincement",
+            "surchauffe",
+            "blocage"
+          ],
+          "defauts": [
+            "plaques"
+          ]
+        },
+        {
+          "id": "contamination_roulement",
+          "libelle": "Contamination (poussière, eau)",
+          "symptomes": [
+            "grincement",
+            "vibration",
+            "bruit_cyclique"
+          ],
+          "defauts": [
+            "piqures",
+            "rayures"
+          ]
+        },
+        {
+          "id": "fatigue_roulement",
+          "libelle": "Usure par fatigue (écaillage des pistes)",
+          "symptomes": [
+            "vibration",
+            "bruit_cyclique",
+            "jeu_excessif"
+          ],
+          "defauts": [
+            "piqures",
+            "microfissures"
+          ]
+        },
+        {
+          "id": "montage_roulement",
+          "libelle": "Désalignement ou montage incorrect",
+          "symptomes": [
+            "vibration",
+            "surchauffe"
+          ],
+          "defauts": [
+            "rayures"
+          ]
+        },
+        {
+          "id": "corrosion_roulement",
+          "libelle": "Corrosion",
+          "symptomes": [
+            "grincement",
+            "jeu_excessif"
+          ],
+          "defauts": [
+            "piqures",
+            "plaques"
+          ]
+        }
+      ],
+      "verifications": [
+        {
+          "priorite": 1,
+          "action": "Vérifier l'état et le niveau du lubrifiant"
+        },
+        {
+          "priorite": 2,
+          "action": "Mesurer la température du palier en fonctionnement"
+        },
+        {
+          "priorite": 3,
+          "action": "Contrôler le jeu radial et axial à la main, machine arrêtée"
+        },
+        {
+          "priorite": 4,
+          "action": "Faire une analyse vibratoire (fréquences de défaut de roulement)"
+        },
+        {
+          "priorite": 5,
+          "action": "Démonter et inspecter les bagues et les pistes"
+        }
+      ]
+    },
+    "engrenage": {
+      "libelle": "Engrenage",
+      "causes": [
+        {
+          "id": "usure_dents",
+          "libelle": "Usure des dents",
+          "symptomes": [
+            "claquement",
+            "bruit_cyclique",
+            "jeu_excessif"
+          ],
+          "defauts": [
+            "rayures",
+            "plaques"
+          ]
+        },
+        {
+          "id": "rupture_dent",
+          "libelle": "Fissure ou rupture de dent",
+          "symptomes": [
+            "claquement",
+            "bruit_cyclique",
+            "blocage"
+          ],
+          "defauts": [
+            "microfissures",
+            "inclusions"
+          ]
+        },
+        {
+          "id": "lubrification_engrenage",
+          "libelle": "Lubrification inadéquate",
+          "symptomes": [
+            "surchauffe",
+            "grincement"
+          ],
+          "defauts": [
+            "plaques",
+            "piqures"
+          ]
+        },
+        {
+          "id": "pitting_engrenage",
+          "libelle": "Piqûres de contact (pitting)",
+          "symptomes": [
+            "bruit_cyclique",
+            "vibration"
+          ],
+          "defauts": [
+            "piqures"
+          ]
+        },
+        {
+          "id": "jeu_engrenement",
+          "libelle": "Jeu d'engrènement incorrect",
+          "symptomes": [
+            "claquement",
+            "jeu_excessif"
+          ],
+          "defauts": []
+        }
+      ],
+      "verifications": [
+        {
+          "priorite": 1,
+          "action": "Inspecter visuellement les dents (usure, fissures, piqûres)"
+        },
+        {
+          "priorite": 2,
+          "action": "Contrôler le niveau d'huile et la présence de particules métalliques"
+        },
+        {
+          "priorite": 3,
+          "action": "Mesurer le jeu d'engrènement"
+        },
+        {
+          "priorite": 4,
+          "action": "Vérifier l'alignement des arbres"
+        }
+      ]
+    },
+    "arbre": {
+      "libelle": "Arbre",
+      "causes": [
+        {
+          "id": "desalignement_arbre",
+          "libelle": "Désalignement",
+          "symptomes": [
+            "vibration",
+            "surchauffe",
+            "conso_elevee"
+          ],
+          "defauts": []
+        },
+        {
+          "id": "balourd",
+          "libelle": "Déséquilibre (balourd)",
+          "symptomes": [
+            "vibration",
+            "bruit_cyclique"
+          ],
+          "defauts": []
+        },
+        {
+          "id": "flexion_arbre",
+          "libelle": "Flexion ou déformation",
+          "symptomes": [
+            "vibration",
+            "blocage",
+            "bruit_cyclique"
+          ],
+          "defauts": []
+        },
+        {
+          "id": "fissure_arbre",
+          "libelle": "Fissure de fatigue",
+          "symptomes": [
+            "vibration",
+            "claquement"
+          ],
+          "defauts": [
+            "microfissures",
+            "inclusions",
+            "calamine"
+          ]
+        },
+        {
+          "id": "usure_portees",
+          "libelle": "Usure des portées",
+          "symptomes": [
+            "jeu_excessif",
+            "fuite"
+          ],
+          "defauts": [
+            "rayures"
+          ]
+        }
+      ],
+      "verifications": [
+        {
+          "priorite": 1,
+          "action": "Contrôler l'alignement (laser ou comparateur)"
+        },
+        {
+          "priorite": 2,
+          "action": "Mesurer le faux-rond de l'arbre"
+        },
+        {
+          "priorite": 3,
+          "action": "Faire une analyse vibratoire (composantes 1x et 2x la vitesse de rotation)"
+        },
+        {
+          "priorite": 4,
+          "action": "Rechercher les fissures par ressuage ou magnétoscopie"
+        }
+      ]
+    },
+    "courroie": {
+      "libelle": "Courroie",
+      "causes": [
+        {
+          "id": "tension_courroie",
+          "libelle": "Tension incorrecte",
+          "symptomes": [
+            "sifflement",
+            "perte_puissance",
+            "odeur_brule"
+          ],
+          "defauts": []
+        },
+        {
+          "id": "usure_courroie",
+          "libelle": "Usure ou craquelures",
+          "symptomes": [
+            "sifflement",
+            "perte_puissance"
+          ],
+          "defauts": [
+            "microfissures"
+          ]
+        },
+        {
+          "id": "alignement_poulies",
+          "libelle": "Désalignement des poulies",
+          "symptomes": [
+            "sifflement",
+            "vibration",
+            "grincement"
+          ],
+          "defauts": []
+        },
+        {
+          "id": "glissement_courroie",
+          "libelle": "Glissement (contamination par l'huile)",
+          "symptomes": [
+            "sifflement",
+            "odeur_brule",
+            "perte_puissance"
+          ],
+          "defauts": []
+        }
+      ],
+      "verifications": [
+        {
+          "priorite": 1,
+          "action": "Mesurer la tension de la courroie"
+        },
+        {
+          "priorite": 2,
+          "action": "Inspecter les flancs et le dos (craquelures, effilochage, glaçage)"
+        },
+        {
+          "priorite": 3,
+          "action": "Vérifier l'alignement des poulies"
+        },
+        {
+          "priorite": 4,
+          "action": "Contrôler l'état des gorges des poulies"
+        }
+      ]
+    },
+    "joint": {
+      "libelle": "Joint d'étanchéité",
+      "causes": [
+        {
+          "id": "usure_joint",
+          "libelle": "Usure ou durcissement de la lèvre",
+          "symptomes": [
+            "fuite"
+          ],
+          "defauts": [
+            "rayures"
+          ]
+        },
+        {
+          "id": "montage_joint",
+          "libelle": "Montage incorrect",
+          "symptomes": [
+            "fuite"
+          ],
+          "defauts": []
+        },
+        {
+          "id": "portee_endommagee",
+          "libelle": "Portée d'arbre endommagée",
+          "symptomes": [
+            "fuite",
+            "grincement"
+          ],
+          "defauts": [
+            "rayures"
+          ]
+        },
+        {
+          "id": "degradation_joint",
+          "libelle": "Dégradation thermique ou chimique",
+          "symptomes": [
+            "fuite",
+            "surchauffe"
+          ],
+          "defauts": []
+        }
+      ],
+      "verifications": [
+        {
+          "priorite": 1,
+          "action": "Localiser précisément l'origine de la fuite"
+        },
+        {
+          "priorite": 2,
+          "action": "Inspecter la lèvre du joint (usure, durcissement, coupure)"
+        },
+        {
+          "priorite": 3,
+          "action": "Vérifier l'état de surface de la portée d'arbre"
+        },
+        {
+          "priorite": 4,
+          "action": "Vérifier la compatibilité du joint avec le fluide et la température"
+        }
+      ]
+    },
+    "moteur": {
+      "libelle": "Moteur électrique",
+      "causes": [
+        {
+          "id": "surcharge_moteur",
+          "libelle": "Surcharge mécanique",
+          "symptomes": [
+            "surchauffe",
+            "conso_elevee",
+            "odeur_brule",
+            "perte_puissance"
+          ],
+          "defauts": []
+        },
+        {
+          "id": "isolation_moteur",
+          "libelle": "Défaut d'isolation des enroulements",
+          "symptomes": [
+            "odeur_brule",
+            "surchauffe",
+            "conso_elevee"
+          ],
+          "defauts": []
+        },
+        {
+          "id": "ventilation_moteur",
+          "libelle": "Ventilation obstruée",
+          "symptomes": [
+            "surchauffe",
+            "odeur_brule"
+          ],
+          "defauts": []
+        },
+        {
+          "id": "roulements_moteur",
+          "libelle": "Roulements du moteur usés",
+          "symptomes": [
+            "vibration",
+            "grincement",
+            "bruit_cyclique"
+          ],
+          "defauts": []
+        },
+        {
+          "id": "alimentation_moteur",
+          "libelle": "Déséquilibre des phases d'alimentation",
+          "symptomes": [
+            "vibration",
+            "surchauffe",
+            "perte_puissance"
+          ],
+          "defauts": []
+        }
+      ],
+      "verifications": [
+        {
+          "priorite": 1,
+          "action": "Mesurer le courant sur chaque phase"
+        },
+        {
+          "priorite": 2,
+          "action": "Vérifier la ventilation et la température de la carcasse"
+        },
+        {
+          "priorite": 3,
+          "action": "Mesurer la résistance d'isolement (mégohmmètre)"
+        },
+        {
+          "priorite": 4,
+          "action": "Contrôler les vibrations côté accouplement"
+        }
+      ]
+    }
+  },
+  "relations_symptomes": {
+    "grincement": {
+      "roulement": 0.9,
+      "engrenage": 0.5,
+      "courroie": 0.4,
+      "joint": 0.3,
+      "arbre": 0.2,
+      "moteur": 0.3
+    },
+    "sifflement": {
+      "courroie": 0.9,
+      "roulement": 0.4,
+      "joint": 0.3,
+      "moteur": 0.3
+    },
+    "claquement": {
+      "engrenage": 0.8,
+      "arbre": 0.5,
+      "roulement": 0.4,
+      "courroie": 0.3
+    },
+    "vibration": {
+      "roulement": 0.8,
+      "arbre": 0.8,
+      "engrenage": 0.6,
+      "moteur": 0.5,
+      "courroie": 0.4
+    },
+    "surchauffe": {
+      "roulement": 0.8,
+      "moteur": 0.8,
+      "engrenage": 0.5,
+      "courroie": 0.4,
+      "joint": 0.3
+    },
+    "blocage": {
+      "roulement": 0.8,
+      "engrenage": 0.7,
+      "arbre": 0.5,
+      "moteur": 0.4
+    },
+    "perte_puissance": {
+      "courroie": 0.8,
+      "moteur": 0.7,
+      "engrenage": 0.4
+    },
+    "fuite": {
+      "joint": 0.95,
+      "roulement": 0.2,
+      "arbre": 0.2
+    },
+    "odeur_brule": {
+      "moteur": 0.8,
+      "courroie": 0.7,
+      "roulement": 0.4
+    },
+    "bruit_cyclique": {
+      "engrenage": 0.8,
+      "roulement": 0.6,
+      "arbre": 0.5,
+      "courroie": 0.4
+    },
+    "jeu_excessif": {
+      "roulement": 0.8,
+      "engrenage": 0.6,
+      "arbre": 0.5
+    },
+    "conso_elevee": {
+      "moteur": 0.8,
+      "roulement": 0.5,
+      "engrenage": 0.4,
+      "arbre": 0.3
+    }
+  },
+  "relations_defauts": {
+    "microfissures": {
+      "arbre": 0.8,
+      "engrenage": 0.7,
+      "roulement": 0.5,
+      "courroie": 0.3
+    },
+    "piqures": {
+      "roulement": 0.8,
+      "engrenage": 0.7,
+      "arbre": 0.4,
+      "joint": 0.2
+    },
+    "rayures": {
+      "arbre": 0.7,
+      "roulement": 0.6,
+      "joint": 0.5,
+      "engrenage": 0.4
+    },
+    "plaques": {
+      "roulement": 0.5,
+      "engrenage": 0.5,
+      "arbre": 0.5
+    },
+    "inclusions": {
+      "arbre": 0.6,
+      "engrenage": 0.6,
+      "roulement": 0.5
+    },
+    "calamine": {
+      "arbre": 0.6,
+      "engrenage": 0.4,
+      "roulement": 0.3
+    }
+  }
+}
