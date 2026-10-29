@@ -1,0 +1,8 @@
+{
+  "description": "Corpus de TEST : à rédiger soi-même ou par d'autres personnes, sans modifier l'extracteur ensuite. Remplacer les exemples ci-dessous et viser au moins 30 phrases.",
+  "phrases": [
+    {"id": 1, "texte": "EXEMPLE À REMPLACER : le moteur fait un bruit de frottement et devient brûlant", "symptomes": ["grincement", "surchauffe"]},
+    {"id": 2, "texte": "EXEMPLE À REMPLACER : aucune anomalie constatée lors de l'inspection", "symptomes": []},
+    {"id": 3, "texte": "EXEMPLE À REMPLACER : l'huile goutte sous le réducteur", "symptomes": ["fuite"]}
+  ]
+}

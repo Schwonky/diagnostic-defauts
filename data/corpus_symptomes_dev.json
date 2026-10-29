@@ -1,0 +1,433 @@
+{
+  "description": "Corpus de développement : phrases annotées à la main avec leurs symptômes.",
+  "phrases": [
+    {
+      "id": 1,
+      "texte": "Le convoyeur grince quand il démarre.",
+      "symptomes": [
+        "grincement"
+      ]
+    },
+    {
+      "id": 2,
+      "texte": "Ça couine au niveau du palier depuis ce matin.",
+      "symptomes": [
+        "grincement"
+      ]
+    },
+    {
+      "id": 3,
+      "texte": "On entend un crissement métallique sur la ligne 2.",
+      "symptomes": [
+        "grincement"
+      ]
+    },
+    {
+      "id": 4,
+      "texte": "La courroie siffle au démarrage.",
+      "symptomes": [
+        "sifflement"
+      ]
+    },
+    {
+      "id": 5,
+      "texte": "Il y a un sifflement aigu quand la machine accélère.",
+      "symptomes": [
+        "sifflement"
+      ]
+    },
+    {
+      "id": 6,
+      "texte": "Le réducteur claque de temps en temps.",
+      "symptomes": [
+        "claquement"
+      ]
+    },
+    {
+      "id": 7,
+      "texte": "On entend des chocs dans la boîte d'engrenages.",
+      "symptomes": [
+        "claquement"
+      ]
+    },
+    {
+      "id": 8,
+      "texte": "Il y a un cliquetis dans le carter.",
+      "symptomes": [
+        "claquement"
+      ]
+    },
+    {
+      "id": 9,
+      "texte": "La pompe vibre énormément.",
+      "symptomes": [
+        "vibration"
+      ]
+    },
+    {
+      "id": 10,
+      "texte": "Toute la structure tremble quand le moteur tourne.",
+      "symptomes": [
+        "vibration"
+      ]
+    },
+    {
+      "id": 11,
+      "texte": "Des vibrations anormales sont apparues sur l'arbre principal.",
+      "symptomes": [
+        "vibration"
+      ]
+    },
+    {
+      "id": 12,
+      "texte": "Le palier chauffe beaucoup trop.",
+      "symptomes": [
+        "surchauffe"
+      ]
+    },
+    {
+      "id": 13,
+      "texte": "La température du moteur est anormale.",
+      "symptomes": [
+        "surchauffe"
+      ]
+    },
+    {
+      "id": 14,
+      "texte": "Le carter est très chaud au toucher.",
+      "symptomes": [
+        "surchauffe"
+      ]
+    },
+    {
+      "id": 15,
+      "texte": "Le mécanisme est complètement bloqué.",
+      "symptomes": [
+        "blocage"
+      ]
+    },
+    {
+      "id": 16,
+      "texte": "L'arbre ne tourne plus du tout.",
+      "symptomes": [
+        "blocage"
+      ]
+    },
+    {
+      "id": 17,
+      "texte": "La pièce est grippée, impossible de la faire tourner.",
+      "symptomes": [
+        "blocage"
+      ]
+    },
+    {
+      "id": 18,
+      "texte": "La machine perd de la puissance en charge.",
+      "symptomes": [
+        "perte_puissance"
+      ]
+    },
+    {
+      "id": 19,
+      "texte": "Le convoyeur ralentit sans raison.",
+      "symptomes": [
+        "perte_puissance"
+      ]
+    },
+    {
+      "id": 20,
+      "texte": "La courroie patine sur la poulie.",
+      "symptomes": [
+        "perte_puissance"
+      ]
+    },
+    {
+      "id": 21,
+      "texte": "Il y a une fuite d'huile sous le réducteur.",
+      "symptomes": [
+        "fuite"
+      ]
+    },
+    {
+      "id": 22,
+      "texte": "Le joint suinte légèrement.",
+      "symptomes": [
+        "fuite"
+      ]
+    },
+    {
+      "id": 23,
+      "texte": "On trouve une flaque sous la pompe chaque matin.",
+      "symptomes": [
+        "fuite"
+      ]
+    },
+    {
+      "id": 24,
+      "texte": "Ça sent le brûlé près du moteur.",
+      "symptomes": [
+        "odeur_brule"
+      ]
+    },
+    {
+      "id": 25,
+      "texte": "Une odeur de caoutchouc se dégage de la transmission.",
+      "symptomes": [
+        "odeur_brule"
+      ]
+    },
+    {
+      "id": 26,
+      "texte": "De la fumée sort du boîtier électrique du moteur.",
+      "symptomes": [
+        "odeur_brule"
+      ]
+    },
+    {
+      "id": 27,
+      "texte": "On entend un bruit régulier à chaque tour.",
+      "symptomes": [
+        "bruit_cyclique"
+      ]
+    },
+    {
+      "id": 28,
+      "texte": "Il y a un bruit périodique qui revient constamment.",
+      "symptomes": [
+        "bruit_cyclique"
+      ]
+    },
+    {
+      "id": 29,
+      "texte": "L'arbre a du jeu dans son logement.",
+      "symptomes": [
+        "jeu_excessif"
+      ]
+    },
+    {
+      "id": 30,
+      "texte": "La poulie est branlante.",
+      "symptomes": [
+        "jeu_excessif"
+      ]
+    },
+    {
+      "id": 31,
+      "texte": "Le disjoncteur saute toutes les heures.",
+      "symptomes": [
+        "conso_elevee"
+      ]
+    },
+    {
+      "id": 32,
+      "texte": "Le moteur consomme beaucoup plus que d'habitude.",
+      "symptomes": [
+        "conso_elevee"
+      ]
+    },
+    {
+      "id": 33,
+      "texte": "Le roulement grince et chauffe.",
+      "symptomes": [
+        "grincement",
+        "surchauffe"
+      ]
+    },
+    {
+      "id": 34,
+      "texte": "La machine vibre et ça sent le brûlé.",
+      "symptomes": [
+        "vibration",
+        "odeur_brule"
+      ]
+    },
+    {
+      "id": 35,
+      "texte": "La courroie siffle, patine et sent le caoutchouc brûlé.",
+      "symptomes": [
+        "sifflement",
+        "perte_puissance",
+        "odeur_brule"
+      ]
+    },
+    {
+      "id": 36,
+      "texte": "Le réducteur fait un cliquetis à chaque rotation et vibre.",
+      "symptomes": [
+        "claquement",
+        "bruit_cyclique",
+        "vibration"
+      ]
+    },
+    {
+      "id": 37,
+      "texte": "Le moteur chauffe, consomme trop et finit par disjoncter.",
+      "symptomes": [
+        "surchauffe",
+        "conso_elevee"
+      ]
+    },
+    {
+      "id": 38,
+      "texte": "Il y a du jeu dans l'arbre et ça cogne.",
+      "symptomes": [
+        "jeu_excessif",
+        "claquement"
+      ]
+    },
+    {
+      "id": 39,
+      "texte": "Le palier est bloqué et très chaud.",
+      "symptomes": [
+        "blocage",
+        "surchauffe"
+      ]
+    },
+    {
+      "id": 40,
+      "texte": "Fuite d'huile au joint et grincement au démarrage.",
+      "symptomes": [
+        "fuite",
+        "grincement"
+      ]
+    },
+    {
+      "id": 41,
+      "texte": "Le moteur ralentit et dégage une odeur de brûlé.",
+      "symptomes": [
+        "perte_puissance",
+        "odeur_brule"
+      ]
+    },
+    {
+      "id": 42,
+      "texte": "La pompe vibre, chauffe et fait un bruit cyclique.",
+      "symptomes": [
+        "vibration",
+        "surchauffe",
+        "bruit_cyclique"
+      ]
+    },
+    {
+      "id": 43,
+      "texte": "Ça ne vibre pas mais ça grince.",
+      "symptomes": [
+        "grincement"
+      ]
+    },
+    {
+      "id": 44,
+      "texte": "Aucune fuite, par contre le moteur chauffe.",
+      "symptomes": [
+        "surchauffe"
+      ]
+    },
+    {
+      "id": 45,
+      "texte": "Le moteur tourne sans vibration mais il siffle.",
+      "symptomes": [
+        "sifflement"
+      ]
+    },
+    {
+      "id": 46,
+      "texte": "Pas de bruit anormal, mais la machine perd de la puissance.",
+      "symptomes": [
+        "perte_puissance"
+      ]
+    },
+    {
+      "id": 47,
+      "texte": "Le roulement ne chauffe pas, il grince seulement.",
+      "symptomes": [
+        "grincement"
+      ]
+    },
+    {
+      "id": 48,
+      "texte": "Il n'y a jamais eu de fuite sur cette pompe.",
+      "symptomes": []
+    },
+    {
+      "id": 49,
+      "texte": "Tout fonctionne normalement.",
+      "symptomes": []
+    },
+    {
+      "id": 50,
+      "texte": "La machine a été nettoyée hier.",
+      "symptomes": []
+    },
+    {
+      "id": 51,
+      "texte": "Le technicien a changé le filtre la semaine passée.",
+      "symptomes": []
+    },
+    {
+      "id": 52,
+      "texte": "La macine vibrre beaucoup.",
+      "symptomes": [
+        "vibration"
+      ]
+    },
+    {
+      "id": 53,
+      "texte": "Le roulment grinse fort.",
+      "symptomes": [
+        "grincement"
+      ]
+    },
+    {
+      "id": 54,
+      "texte": "La couroie sifle.",
+      "symptomes": [
+        "sifflement"
+      ]
+    },
+    {
+      "id": 55,
+      "texte": "Ça brasse pas mal sur le banc d'essai.",
+      "symptomes": [
+        "vibration"
+      ]
+    },
+    {
+      "id": 56,
+      "texte": "La poulie est lousse.",
+      "symptomes": [
+        "jeu_excessif"
+      ]
+    },
+    {
+      "id": 57,
+      "texte": "Le moteur surchauffe après dix minutes.",
+      "symptomes": [
+        "surchauffe"
+      ]
+    },
+    {
+      "id": 58,
+      "texte": "L'engrenage claque et le carter suinte.",
+      "symptomes": [
+        "claquement",
+        "fuite"
+      ]
+    },
+    {
+      "id": 59,
+      "texte": "Le ventilateur oscille et fait toc toc.",
+      "symptomes": [
+        "vibration",
+        "bruit_cyclique"
+      ]
+    },
+    {
+      "id": 60,
+      "texte": "Le convoyeur est coincé et le moteur fume.",
+      "symptomes": [
+        "blocage",
+        "odeur_brule"
+      ]
+    }
+  ]
+}

@@ -1,7 +1,16 @@
-# Étape 2 : base de connaissances et tests
+# Tests
 pytest>=8.0
 
+# Module symptômes (étape 3)
+snowballstemmer>=2.2
+rapidfuzz>=3.9
+
+# Module vision (étape 4)
+torch>=2.9
+torchvision>=0.24
+scikit-learn>=1.7
+matplotlib>=3.10
+pillow>=11.0
+
 # Les dépendances suivantes seront ajoutées aux prochaines étapes :
-# torch, torchvision, scikit-learn (vision)
-# rapidfuzz (symptômes)
 # fastapi, uvicorn, sqlalchemy, reportlab (application)

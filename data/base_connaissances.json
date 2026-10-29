@@ -1,126 +1,181 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "description": "Base de connaissances AMDEC simplifiée : symptômes et défauts visuels vers composants, causes et vérifications.",
   "echelle_poids": "0 = aucun lien, 1 = lien très fort (plausibilité estimée à partir de la littérature de maintenance)",
   "symptomes": {
     "grincement": {
       "libelle": "Grincement",
       "synonymes": [
+        "grincement",
         "grince",
+        "grincent",
         "grincer",
         "crissement",
         "crisse",
         "couine",
         "couinement",
-        "frottement métallique"
+        "frottement métallique",
+        "ça frotte",
+        "frotte"
       ]
     },
     "sifflement": {
       "libelle": "Sifflement",
       "synonymes": [
+        "sifflement",
         "siffle",
+        "sifflent",
         "siffler",
         "sifflement aigu",
-        "chuintement"
+        "chuintement",
+        "chuinte"
       ]
     },
     "claquement": {
       "libelle": "Claquement",
       "synonymes": [
+        "claquement",
         "claque",
+        "claquent",
         "cliquetis",
         "cogne",
         "cognement",
+        "cognent",
         "choc",
-        "tape",
-        "clac"
+        "chocs",
+        "clac",
+        "tape"
       ]
     },
     "vibration": {
       "libelle": "Vibration anormale",
       "synonymes": [
-        "vibre",
+        "vibration",
         "vibrations",
+        "vibre",
+        "vibrent",
+        "vibrer",
         "tremble",
+        "tremblent",
         "tremblement",
         "secousse",
-        "oscillation"
+        "secoue",
+        "oscillation",
+        "oscille",
+        "brasse"
       ]
     },
     "surchauffe": {
       "libelle": "Surchauffe",
       "synonymes": [
+        "surchauffe",
         "chauffe",
+        "chauffent",
         "trop chaud",
-        "brûlant",
+        "très chaud",
         "température élevée",
-        "surchauffe"
+        "température anormale",
+        "chaleur excessive",
+        "chaud au toucher",
+        "surchauffer"
       ]
     },
     "blocage": {
       "libelle": "Blocage",
       "synonymes": [
+        "blocage",
         "bloqué",
+        "bloquée",
         "se bloque",
         "coince",
+        "coincé",
+        "coincée",
         "grippé",
+        "grippée",
         "grippage",
-        "ne tourne plus"
+        "ne tourne plus",
+        "refuse de tourner"
       ]
     },
     "perte_puissance": {
       "libelle": "Perte de puissance",
       "synonymes": [
+        "perte de puissance",
         "perd de la puissance",
+        "perd sa puissance",
         "manque de puissance",
+        "moins de puissance",
         "ralentit",
+        "ralentissement",
         "patine",
-        "faible rendement"
+        "patiner",
+        "faible rendement",
+        "manque de force",
+        "force faible"
       ]
     },
     "fuite": {
       "libelle": "Fuite",
       "synonymes": [
+        "fuite",
         "fuit",
+        "fuient",
         "suinte",
+        "suintement",
         "coule",
         "perte d'huile",
-        "flaque"
+        "flaque",
+        "huile au sol"
       ]
     },
     "odeur_brule": {
       "libelle": "Odeur de brûlé",
       "synonymes": [
-        "sent le brûlé",
         "odeur de brûlé",
+        "sent le brûlé",
+        "sent le chaud",
         "fumée",
-        "odeur de caoutchouc"
+        "fume",
+        "odeur de caoutchouc",
+        "odeur de plastique brûlé"
       ]
     },
     "bruit_cyclique": {
       "libelle": "Bruit cyclique",
       "synonymes": [
+        "bruit cyclique",
         "bruit régulier",
         "bruit périodique",
+        "bruit rythmé",
         "à chaque tour",
-        "à chaque rotation"
+        "à chaque rotation",
+        "par intermittence régulière",
+        "toc toc"
       ]
     },
     "jeu_excessif": {
       "libelle": "Jeu excessif",
       "synonymes": [
+        "jeu excessif",
+        "trop de jeu",
         "du jeu",
         "prend du jeu",
         "flotte",
-        "ballant"
+        "ballant",
+        "branlant",
+        "lousse"
       ]
     },
     "conso_elevee": {
       "libelle": "Consommation électrique élevée",
       "synonymes": [
+        "consommation élevée",
         "consomme beaucoup",
+        "consomme trop",
         "courant élevé",
+        "ampérage élevé",
         "disjoncteur saute",
+        "disjoncte",
         "surintensité"
       ]
     }
