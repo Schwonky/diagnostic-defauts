@@ -1,0 +1,42 @@
+[
+  {
+    "epoque": 1,
+    "perte": 0.22574297425886378,
+    "exactitude_validation": 0.9861111111111112
+  },
+  {
+    "epoque": 2,
+    "perte": 0.10774139674284901,
+    "exactitude_validation": 0.9861111111111112
+  },
+  {
+    "epoque": 3,
+    "perte": 0.06658483024698515,
+    "exactitude_validation": 0.9953703703703703
+  },
+  {
+    "epoque": 4,
+    "perte": 0.08221863780934842,
+    "exactitude_validation": 0.9814814814814815
+  },
+  {
+    "epoque": 5,
+    "perte": 0.03669566469183431,
+    "exactitude_validation": 1.0
+  },
+  {
+    "epoque": 6,
+    "perte": 0.01972872109558338,
+    "exactitude_validation": 0.9861111111111112
+  },
+  {
+    "epoque": 7,
+    "perte": 0.009578140709214868,
+    "exactitude_validation": 1.0
+  },
+  {
+    "epoque": 8,
+    "perte": 0.006486189911344972,
+    "exactitude_validation": 1.0
+  }
+]
