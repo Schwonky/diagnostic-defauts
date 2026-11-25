@@ -1,0 +1,276 @@
+{
+  "description": "Scénarios de panne pour évaluer la fusion. Rédigés avec l'aide d'un assistant d'IA à partir de l'AMDEC simplifiée; à faire valider et compléter par l'auteur ou un technicien. image_neu : classe et rang (ordre alphabétique) d'une image du jeu de test NEU. composant_photo : composant indiqué par l'utilisateur pour la photo (null si inconnu).",
+  "scenarios": [
+    {
+      "id": 1,
+      "composant_attendu": "roulement",
+      "description": "Le palier grince et devient très chaud après une heure de marche.",
+      "image_neu": {
+        "classe": "pitted_surface",
+        "index": 1
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "grincement",
+        "surchauffe"
+      ]
+    },
+    {
+      "id": 2,
+      "composant_attendu": "roulement",
+      "description": "Ça vibre et on entend un bruit régulier à chaque tour.",
+      "image_neu": {
+        "classe": "pitted_surface",
+        "index": 2
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "vibration",
+        "bruit_cyclique"
+      ]
+    },
+    {
+      "id": 3,
+      "composant_attendu": "roulement",
+      "description": "L'arbre a pris du jeu et ça couine au démarrage.",
+      "image_neu": {
+        "classe": "patches",
+        "index": 3
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "jeu_excessif",
+        "grincement"
+      ]
+    },
+    {
+      "id": 4,
+      "composant_attendu": "roulement",
+      "description": "Ça grince, mais aucune fuite.",
+      "image_neu": {
+        "classe": "patches",
+        "index": 4
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "grincement"
+      ]
+    },
+    {
+      "id": 5,
+      "composant_attendu": "roulement",
+      "description": "Le roulement fait un drôle de bruit.",
+      "image_neu": {
+        "classe": "pitted_surface",
+        "index": 5
+      },
+      "composant_photo": "roulement",
+      "symptomes_attendus": []
+    },
+    {
+      "id": 6,
+      "composant_attendu": "engrenage",
+      "description": "Le réducteur claque à chaque rotation.",
+      "image_neu": {
+        "classe": "crazing",
+        "index": 6
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "claquement",
+        "bruit_cyclique"
+      ]
+    },
+    {
+      "id": 7,
+      "composant_attendu": "engrenage",
+      "description": "On entend des chocs dans la boîte et le carter chauffe.",
+      "image_neu": {
+        "classe": "crazing",
+        "index": 7
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "claquement",
+        "surchauffe"
+      ]
+    },
+    {
+      "id": 8,
+      "composant_attendu": "engrenage",
+      "description": "La transmission fait un cliquetis et se bloque parfois.",
+      "image_neu": {
+        "classe": "inclusion",
+        "index": 8
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "claquement",
+        "blocage"
+      ]
+    },
+    {
+      "id": 9,
+      "composant_attendu": "engrenage",
+      "description": "Ça fait un bruit bizarre depuis ce matin.",
+      "image_neu": {
+        "classe": "crazing",
+        "index": 9
+      },
+      "composant_photo": null,
+      "symptomes_attendus": []
+    },
+    {
+      "id": 10,
+      "composant_attendu": "arbre",
+      "description": "Grosses vibrations quand la vitesse augmente et le moteur consomme beaucoup plus.",
+      "image_neu": {
+        "classe": "crazing",
+        "index": 10
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "vibration",
+        "conso_elevee"
+      ]
+    },
+    {
+      "id": 11,
+      "composant_attendu": "arbre",
+      "description": "On entend un bruit cyclique et un claquement au démarrage.",
+      "image_neu": {
+        "classe": "rolled-in_scale",
+        "index": 11
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "bruit_cyclique",
+        "claquement"
+      ]
+    },
+    {
+      "id": 12,
+      "composant_attendu": "arbre",
+      "description": "Ça vibre beaucoup et il y a une petite fuite près du palier.",
+      "image_neu": {
+        "classe": "scratches",
+        "index": 12
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "vibration",
+        "fuite"
+      ]
+    },
+    {
+      "id": 13,
+      "composant_attendu": "courroie",
+      "description": "La courroie siffle au démarrage et patine.",
+      "image_neu": {
+        "classe": "crazing",
+        "index": 13
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "sifflement",
+        "perte_puissance"
+      ]
+    },
+    {
+      "id": 14,
+      "composant_attendu": "courroie",
+      "description": "Ça sent le caoutchouc brûlé et la machine perd de la puissance.",
+      "image_neu": {
+        "classe": "crazing",
+        "index": 14
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "odeur_brule",
+        "perte_puissance"
+      ]
+    },
+    {
+      "id": 15,
+      "composant_attendu": "courroie",
+      "description": "Sifflement aigu et la poulie vibre.",
+      "image_neu": {
+        "classe": "crazing",
+        "index": 15
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "sifflement",
+        "vibration"
+      ]
+    },
+    {
+      "id": 16,
+      "composant_attendu": "joint",
+      "description": "Il y a une flaque d'huile sous le réducteur chaque matin.",
+      "image_neu": {
+        "classe": "scratches",
+        "index": 16
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "fuite"
+      ]
+    },
+    {
+      "id": 17,
+      "composant_attendu": "joint",
+      "description": "Le joint suinte et le palier chauffe un peu.",
+      "image_neu": {
+        "classe": "scratches",
+        "index": 17
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "fuite",
+        "surchauffe"
+      ]
+    },
+    {
+      "id": 18,
+      "composant_attendu": "joint",
+      "description": "Fuite d'huile au niveau de l'arbre.",
+      "image_neu": {
+        "classe": "scratches",
+        "index": 18
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "fuite"
+      ]
+    },
+    {
+      "id": 19,
+      "composant_attendu": "moteur",
+      "description": "Le moteur chauffe et le disjoncteur saute.",
+      "image_neu": {
+        "classe": "patches",
+        "index": 19
+      },
+      "composant_photo": null,
+      "symptomes_attendus": [
+        "surchauffe",
+        "conso_elevee"
+      ]
+    },
+    {
+      "id": 20,
+      "composant_attendu": "moteur",
+      "description": "Odeur de brûlé près du moteur et il manque de puissance.",
+      "image_neu": {
+        "classe": "patches",
+        "index": 20
+      },
+      "composant_photo": "moteur",
+      "symptomes_attendus": [
+        "odeur_brule",
+        "perte_puissance"
+      ]
+    }
+  ]
+}

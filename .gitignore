@@ -8,3 +8,7 @@ data/images/*
 *.pt
 *.pth
 .env
+data/sources/
+data/v2
+data/photos_reelles/**
+!data/photos_reelles/.gitkeep

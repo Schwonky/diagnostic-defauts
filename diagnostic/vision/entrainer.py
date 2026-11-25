@@ -3,16 +3,21 @@
 Utilisation :
     python -m diagnostic.vision.entrainer              (8 époques par défaut)
     python -m diagnostic.vision.entrainer --epoques 3  (essai rapide)
+
+L'historique (perte et exactitude par époque) est enregistré dans resultats/vision_historique.json.
 """
 
 import argparse
+import json
 import time
 
 import torch
 from torch import nn
 
-from diagnostic.vision.donnees import GRAINE, charger_donnees
+from diagnostic.vision.donnees import GRAINE, RACINE, charger_donnees
 from diagnostic.vision.modele import CHEMIN_MODELE, creer_modele, sauvegarder
+
+CHEMIN_HISTORIQUE = RACINE / "resultats" / "vision_historique.json"
 
 
 def exactitude(modele, chargeur):
@@ -25,24 +30,21 @@ def exactitude(modele, chargeur):
     return corrects / total
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--epoques", type=int, default=8)
-    parser.add_argument("--taux", type=float, default=3e-4, help="taux d'apprentissage")
-    args = parser.parse_args()
-
+def entrainer(epoques=8, taux=3e-4):
+    """Entraîne le modèle, sauvegarde la meilleure version et retourne l'historique par époque."""
     torch.manual_seed(GRAINE)
     entr, val, _, classes = charger_donnees()
     print(f"Classes : {classes}")
     print(f"Images : {len(entr.dataset)} entraînement, {len(val.dataset)} validation")
 
     modele = creer_modele(len(classes))
-    optimiseur = torch.optim.AdamW(modele.parameters(), lr=args.taux, weight_decay=1e-4)
-    planificateur = torch.optim.lr_scheduler.CosineAnnealingLR(optimiseur, T_max=args.epoques)
+    optimiseur = torch.optim.AdamW(modele.parameters(), lr=taux, weight_decay=1e-4)
+    planificateur = torch.optim.lr_scheduler.CosineAnnealingLR(optimiseur, T_max=epoques)
     perte_fn = nn.CrossEntropyLoss()
     meilleure = 0.0
+    historique = []
 
-    for epoque in range(1, args.epoques + 1):
+    for epoque in range(1, epoques + 1):
         debut = time.time()
         modele.train()
         perte_totale = 0.0
@@ -52,19 +54,33 @@ def main():
             perte.backward()
             optimiseur.step()
             perte_totale += perte.item()
-            print(f"\r  Époque {epoque}/{args.epoques}  lot {i}/{len(entr)}", end="", flush=True)
+            print(f"\r  Époque {epoque}/{epoques}  lot {i}/{len(entr)}", end="", flush=True)
         planificateur.step()
 
         exact_val = exactitude(modele, val)
-        print(f"\r  Époque {epoque}/{args.epoques}  perte {perte_totale / len(entr):.3f}  "
+        perte_moy = perte_totale / len(entr)
+        print(f"\r  Époque {epoque}/{epoques}  perte {perte_moy:.3f}  "
               f"exactitude validation {exact_val:.1%}  ({time.time() - debut:.0f} s)")
+        historique.append({"epoque": epoque, "perte": perte_moy, "exactitude_validation": exact_val})
 
         if exact_val >= meilleure:
             meilleure = exact_val
             sauvegarder(modele, classes, {"exactitude_validation": exact_val, "epoque": epoque})
 
+    CHEMIN_HISTORIQUE.parent.mkdir(exist_ok=True)
+    CHEMIN_HISTORIQUE.write_text(json.dumps(historique, indent=2), encoding="utf-8")
+
     print(f"\nMeilleure exactitude en validation : {meilleure:.1%}")
     print(f"Modèle sauvegardé : {CHEMIN_MODELE}")
+    return historique
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--epoques", type=int, default=8)
+    parser.add_argument("--taux", type=float, default=3e-4, help="taux d'apprentissage")
+    args = parser.parse_args()
+    entrainer(args.epoques, args.taux)
     print("Évaluez-le sur le jeu de test : python -m diagnostic.vision.evaluer")
 
 

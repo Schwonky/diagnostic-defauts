@@ -21,6 +21,8 @@ diagnostic/
   symptomes/                Module textuel : extracteur et évaluation
   fusion/                   Moteur de fusion (étape 5)
 api/                        API FastAPI (étape 6)
+notebooks/
+  demonstration.ipynb       Présentation visuelle des données, des modules et des résultats
 tests/                      Tests unitaires
 ```
 

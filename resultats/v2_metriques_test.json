@@ -1,0 +1,20 @@
+{
+  "Global":{
+    "Images":469,
+    "Exactitude":0.9573560768,
+    "Rappel (endommag\u00e9)":0.9400749064,
+    "Pr\u00e9cision (endommag\u00e9)":0.9843137255
+  },
+  "Source : casting":{
+    "Images":195,
+    "Exactitude":1.0,
+    "Rappel (endommag\u00e9)":1.0,
+    "Pr\u00e9cision (endommag\u00e9)":1.0
+  },
+  "Source : pneus":{
+    "Images":274,
+    "Exactitude":0.9270072993,
+    "Rappel (endommag\u00e9)":0.8933333333,
+    "Pr\u00e9cision (endommag\u00e9)":0.9710144928
+  }
+}
