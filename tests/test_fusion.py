@@ -60,3 +60,40 @@ def test_causes_et_verifications_fournies():
     r = moteur.diagnostiquer(symptomes=["grincement", "surchauffe"])
     premier = r["classement"][0]
     assert premier["causes"] and premier["verifications"]
+
+
+def test_piece_saine_n_accuse_aucun_composant():
+    r = moteur.diagnostiquer(symptomes=["fuite"], probas_defauts=probas("microfissures"), p_endommage=0.1,
+                             composant_photo="arbre")
+    assert r["image"]["etat"] == "bon_etat"
+    assert r["poids"] == {"symptomes": 1.0, "image": 0.0}
+    assert r["image"]["defaut_principal"] is None
+    assert all(c["score_image"] == 0 for c in r["classement"])
+
+
+def test_etat_incertain_reduit_le_poids_de_l_image():
+    r = moteur.diagnostiquer(symptomes=["fuite"], probas_defauts=probas("rayures"), p_endommage=0.5)
+    assert r["image"]["etat"] == "incertain"
+    assert r["poids"]["image"] == 0.15
+
+
+def test_piece_endommagee_garde_le_poids_normal():
+    r = moteur.diagnostiquer(symptomes=["fuite"], probas_defauts=probas("rayures"), p_endommage=0.9)
+    assert r["image"]["etat"] == "endommage"
+    assert r["poids"]["image"] == 0.4
+
+
+def test_image_desactivee_n_influence_pas_les_causes():
+    texte_seul = moteur.diagnostiquer(symptomes=["vibration"])
+    desactivee = moteur.diagnostiquer(symptomes=["vibration"], probas_defauts=probas("microfissures"),
+                                      p_endommage=0.9, utiliser_image=False)
+    assert desactivee["classement"] == texte_seul["classement"]
+    assert desactivee["avertissements"] == texte_seul["avertissements"]
+
+
+def test_desaccord_entre_symptomes_et_image_signale():
+    r = moteur.diagnostiquer(symptomes=["fuite"], probas_defauts=probas("microfissures"), p_endommage=0.95)
+    sym = moteur.scores_symptomes(["fuite"])
+    img = moteur.scores_image(probas("microfissures"), 0.95)
+    desaccord = max(sym, key=sym.get) != max(img, key=img.get)
+    assert any("Les symptômes désignent" in a for a in r["avertissements"]) == desaccord
