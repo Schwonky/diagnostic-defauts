@@ -1,0 +1,14 @@
+{
+  "Texte seul":{
+    "Bon composant en 1re position":0.7,
+    "Bon composant dans le top 3":0.9
+  },
+  "Image seule":{
+    "Bon composant en 1re position":0.35,
+    "Bon composant dans le top 3":0.8
+  },
+  "Texte + image":{
+    "Bon composant en 1re position":0.8,
+    "Bon composant dans le top 3":1.0
+  }
+}
