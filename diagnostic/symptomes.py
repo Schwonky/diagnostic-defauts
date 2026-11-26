@@ -1,4 +1,4 @@
-"""Extraction des symptômes à partir d'une description libre en français.
+"""Symptômes : extraction à partir d'une description libre en français, et évaluation sur un corpus annoté.
 
 Méthode :
 1. Normalisation du texte (minuscules, apostrophes, ponctuation).
@@ -9,13 +9,18 @@ Méthode :
 5. Détection des négations (« ne vibre pas », « aucune fuite », « sans bruit »).
 """
 
+import json
 import re
 import unicodedata
 
 import snowballstemmer
 from rapidfuzz import fuzz
 
+from diagnostic import RACINE
 from diagnostic.base_connaissances import BaseConnaissances
+
+CORPUS_DEV = RACINE / "data" / "corpus_symptomes_dev.json"
+CORPUS_TEST = RACINE / "data" / "corpus_symptomes_test.json"
 
 MOTS_VIDES = {
     "le", "la", "les", "l", "de", "du", "des", "d", "un", "une", "au", "aux", "a",
@@ -85,7 +90,7 @@ class ExtracteurSymptomes:
         # Pré-calcul des racines de chaque synonyme
         self.patrons = []
         for id_symptome, infos in self.base.symptomes.items():
-            formes = set(infos["synonymes"]) | {infos["libelle"]}
+            formes = sorted(set(infos["synonymes"]) | {infos["libelle"]})  # ordre fixe : résultat reproductible
             for forme in formes:
                 racines = [r for r in _mots(forme) if r not in MOTS_VIDES]
                 if racines:
@@ -146,3 +151,31 @@ class ExtracteurSymptomes:
             absents.pop(id_symptome, None)
         trier = lambda d: sorted(d.values(), key=lambda s: -s["confiance"])
         return {"presents": trier(presents), "absents": trier(absents)}
+
+
+def evaluer(chemin_corpus=CORPUS_DEV, extracteur=None):
+    """Compare les symptômes extraits aux symptômes annotés de chaque phrase du corpus.
+
+    Retourne {"phrases", "parfaites", "rappel", "precision", "f1", "erreurs"};
+    chaque erreur est (texte, symptômes manqués, symptômes en trop).
+    """
+    with open(chemin_corpus, encoding="utf-8") as f:
+        phrases = json.load(f)["phrases"]
+    extracteur = extracteur or ExtracteurSymptomes()
+    vp = fp = fn = parfaites = 0
+    erreurs = []
+    for p in phrases:
+        attendus = set(p["symptomes"])
+        predits = {s["id"] for s in extracteur.extraire(p["texte"])["presents"]}
+        vp += len(attendus & predits)
+        fp += len(predits - attendus)
+        fn += len(attendus - predits)
+        if attendus == predits:
+            parfaites += 1
+        else:
+            erreurs.append((p["texte"], sorted(attendus - predits), sorted(predits - attendus)))
+    rappel = vp / (vp + fn) if vp + fn else 1.0
+    precision = vp / (vp + fp) if vp + fp else 1.0
+    f1 = 2 * precision * rappel / (precision + rappel) if precision + rappel else 0.0
+    return {"phrases": len(phrases), "parfaites": parfaites, "rappel": rappel,
+            "precision": precision, "f1": f1, "erreurs": erreurs}

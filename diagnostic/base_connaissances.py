@@ -1,9 +1,10 @@
 """Chargement et validation de la base de connaissances (AMDEC simplifiée)."""
 
 import json
-from pathlib import Path
 
-CHEMIN_PAR_DEFAUT = Path(__file__).resolve().parent.parent / "data" / "base_connaissances.json"
+from diagnostic import RACINE
+
+CHEMIN_PAR_DEFAUT = RACINE / "data" / "base_connaissances.json"
 
 
 class ErreurBaseConnaissances(Exception):

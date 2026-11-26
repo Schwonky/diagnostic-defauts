@@ -1,6 +1,6 @@
 import pytest
 
-from diagnostic.symptomes import ExtracteurSymptomes
+from diagnostic.symptomes import CORPUS_DEV, ExtracteurSymptomes, evaluer
 
 
 @pytest.fixture(scope="module")
@@ -53,7 +53,5 @@ def test_aucun_symptome(extracteur):
     assert ids(extracteur.extraire("Le technicien a changé le filtre.")) == set()
 
 
-def test_critere_de_reussite_sur_corpus_dev():
-    from diagnostic.symptomes.evaluer import RACINE, evaluer
-    resultats = evaluer(RACINE / "data" / "corpus_symptomes_dev.json", afficher_erreurs=False)
-    assert resultats["rappel"] >= 0.85
+def test_critere_de_reussite_sur_corpus_dev(extracteur):
+    assert evaluer(CORPUS_DEV, extracteur)["rappel"] >= 0.85
