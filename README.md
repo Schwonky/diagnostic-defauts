@@ -3,50 +3,38 @@
 Projet synthèse INF4173, session automne 2026.
 
 Application d'aide au diagnostic qui combine :
-- un module de **vision** (détection du type de défaut sur une image, jeu NEU-CLS) ;
-- un module d'**analyse des symptômes** (texte en français) ;
-- un module de **fusion** qui classe les composants suspects et propose des vérifications.
+- un module de **vision** : la pièce est-elle endommagée, et quel type de défaut ? (photo);
+- un module de **symptômes** : description en français → symptômes reconnus;
+- un module de **fusion** : classe les 3 composants les plus suspects, avec causes et vérifications.
 
 ## Structure
 
 ```
-data/
-  base_connaissances.json   Symptômes, défauts, composants, causes, vérifications
-  corpus_symptomes_dev.json Phrases annotées pour développer le module symptômes
-  corpus_symptomes_test.json Phrases annotées pour l'évaluation finale (à compléter)
-  images/                   Images NEU-CLS (non versionnées)
-diagnostic/
-  base_connaissances.py     Chargement et validation de la base
-  vision/                   Module de vision : données, modèle, entraînement, évaluation
-  symptomes/                Module textuel : extracteur et évaluation
-  fusion/                   Moteur de fusion (étape 5)
-api/                        API FastAPI (étape 6)
-notebooks/
-  demonstration.ipynb       Présentation visuelle des données, des modules et des résultats
-tests/                      Tests unitaires
-```
-
-## Module symptômes
-
-```bash
-python -m diagnostic.symptomes "la machine vibre et sent le brûlé"
-python -m diagnostic.symptomes.evaluer                                  # corpus de développement
-python -m diagnostic.symptomes.evaluer data/corpus_symptomes_test.json  # corpus de test
-```
-
-## Module vision
-
-```bash
-python -m diagnostic.vision.entrainer          # entraîne ResNet18 (modèle dans modeles/)
-python -m diagnostic.vision.evaluer            # évalue sur le jeu de test (résultats dans resultats/)
-python -m diagnostic.vision chemin/image.jpg   # prédit le défaut d'une image
+diagnostic/                  Code utilisé par l'application (prédiction seulement)
+    base_connaissances.py    Symptômes, défauts, composants, causes et vérifications (AMDEC simplifiée)
+    symptomes.py             Description en français → symptômes (+ évaluation sur un corpus)
+    vision.py                Photo → état de la pièce (modèle v2) et type de défaut (modèle NEU)
+    fusion.py                Symptômes + image → composants suspects
+api/                         Application web (FastAPI)
+notebooks/                   Données, entraînement et évaluation
+    inventaire_donnees.ipynb     Inventaire des jeux de données
+    preparation_donnees_v2.ipynb Construction du jeu bon état / endommagé (data/v2/)
+    entrainement_v2.ipynb        Modèle bon état / endommagé
+    entrainement_neu.ipynb       Modèle type de défaut (NEU-DET)
+    symptomes.ipynb              Exemples et évaluation du module symptômes
+    fusion.ipynb                 Évaluation de la fusion
+data/                        Base de connaissances, corpus, scénarios (les images ne sont pas versionnées)
+resultats/                   Figures et métriques produites par les notebooks
+tests/                       Tests unitaires (pytest)
 ```
 
 ## Installation
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate        # Windows : .venv\Scripts\activate
+.venv\Scripts\activate           # Linux / macOS : source .venv/bin/activate
 pip install -r requirements.txt
 pytest
 ```
+
+Les modèles (`modeles/*.pt`) ne sont pas versionnés : exécutez `entrainement_v2.ipynb` et `entrainement_neu.ipynb`.

@@ -1,20 +1,19 @@
 # Tests
 pytest>=8.0
 
-# Module symptômes (étape 3)
+# Module symptômes
 snowballstemmer>=2.2
 rapidfuzz>=3.9
 
-# Module vision (étape 4)
+# Module vision
 torch>=2.9
 torchvision>=0.24
 scikit-learn>=1.7
 matplotlib>=3.10
 pillow>=11.0
 
-# Notebook de démonstration
+# Notebooks
 ipykernel>=6.29
 pandas>=2.2
 
-# Les dépendances suivantes seront ajoutées aux prochaines étapes :
-# fastapi, uvicorn, sqlalchemy, reportlab (application)
+# Application web : ajoutée à l'étape 7
