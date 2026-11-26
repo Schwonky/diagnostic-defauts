@@ -1,32 +1,32 @@
 [
   {
     "epoque": 1,
-    "perte": 0.43057613981806714,
-    "exactitude_validation": 0.8315565031982942
+    "perte": 0.3892643357006212,
+    "exactitude_validation": 0.8174474959612278
   },
   {
     "epoque": 2,
-    "perte": 0.2755255334187245,
-    "exactitude_validation": 0.929637526652452
+    "perte": 0.2400460491577784,
+    "exactitude_validation": 0.9079159935379645
   },
   {
     "epoque": 3,
-    "perte": 0.23296944883422574,
-    "exactitude_validation": 0.8827292110874201
+    "perte": 0.168135508041208,
+    "exactitude_validation": 0.9095315024232633
   },
   {
     "epoque": 4,
-    "perte": 0.16953419694218083,
-    "exactitude_validation": 0.9488272921108742
+    "perte": 0.1335275566088967,
+    "exactitude_validation": 0.9305331179321487
   },
   {
     "epoque": 5,
-    "perte": 0.10312359974436137,
-    "exactitude_validation": 0.9701492537313433
+    "perte": 0.0898129886481911,
+    "exactitude_validation": 0.9773828756058158
   },
   {
     "epoque": 6,
-    "perte": 0.07909030936982321,
-    "exactitude_validation": 0.9680170575692963
+    "perte": 0.07111066059830289,
+    "exactitude_validation": 0.9838449111470113
   }
 ]
