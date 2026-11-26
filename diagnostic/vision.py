@@ -21,12 +21,19 @@ MODELE_NEU = RACINE / "modeles" / "vision_resnet18.pt"
 
 # Normalisation ImageNet : celle du ResNet18 préentraîné
 MOYENNE, ECART_TYPE = [0.485, 0.456, 0.406], [0.229, 0.224, 0.225]
-transfo_etat = transforms.Compose([
-    transforms.Resize(256),
-    transforms.CenterCrop(224),
-    transforms.ToTensor(),
-    transforms.Normalize(MOYENNE, ECART_TYPE),
-])
+
+
+def transformation_etat(taille=224):
+    """Redimensionnement puis carré central de « taille » pixels (même rapport que 256 → 224)."""
+    return transforms.Compose([
+        transforms.Resize(round(taille * 256 / 224)),
+        transforms.CenterCrop(taille),
+        transforms.ToTensor(),
+        transforms.Normalize(MOYENNE, ECART_TYPE),
+    ])
+
+
+transfo_etat = transformation_etat(224)
 transfo_neu = transforms.Compose([
     transforms.Grayscale(num_output_channels=3),  # images NEU en niveaux de gris → 3 canaux
     transforms.Resize((224, 224)),
@@ -43,13 +50,13 @@ def creer_resnet(nb_classes, preentraine=True):
 
 
 def charger_resnet(chemin, notebook):
-    """Retourne (modèle en mode évaluation, noms des classes) depuis un fichier .pt."""
+    """Retourne (modèle en mode évaluation, noms des classes, taille d'image) depuis un fichier .pt."""
     if not Path(chemin).exists():
         raise FileNotFoundError(f"Modèle introuvable : {chemin}\nExécutez d'abord notebooks/{notebook}.")
     sauvegarde = torch.load(chemin, map_location="cpu", weights_only=True)
     modele = creer_resnet(len(sauvegarde["classes"]), preentraine=False)
     modele.load_state_dict(sauvegarde["etat"])
-    return modele.eval(), sauvegarde["classes"]
+    return modele.eval(), sauvegarde["classes"], sauvegarde.get("taille", 224)
 
 
 def ouvrir(image):
@@ -92,11 +99,12 @@ class DetecteurEtat:
     """Modèle v2 : probabilité que la pièce soit endommagée."""
 
     def __init__(self, chemin=MODELE_ETAT):
-        self.modele, self.classes = charger_resnet(chemin, "entrainement_v2.ipynb")
+        self.modele, self.classes, taille = charger_resnet(chemin, "entrainement_v2.ipynb")
+        self.transformation = transformation_etat(taille)  # taille d'image utilisée à l'entraînement
 
     def proba_endommage(self, image):
         with torch.no_grad():
-            p = torch.softmax(self.modele(transfo_etat(ouvrir(image).convert("RGB")).unsqueeze(0)), dim=1)[0]
+            p = torch.softmax(self.modele(self.transformation(ouvrir(image).convert("RGB")).unsqueeze(0)), dim=1)[0]
         return p[self.classes.index("endommage")].item()
 
 
@@ -104,7 +112,7 @@ class ClassifieurDefauts:
     """Modèle NEU : probabilité de chaque défaut de surface (identifiants de la base de connaissances)."""
 
     def __init__(self, chemin=MODELE_NEU, base=None):
-        self.modele, self.classes = charger_resnet(chemin, "entrainement_neu.ipynb")
+        self.modele, self.classes, _ = charger_resnet(chemin, "entrainement_neu.ipynb")
         self.base = base or BaseConnaissances()
         # Classe NEU (ex. « crazing ») → identifiant de défaut (ex. « microfissures »)
         neu_vers_defaut = {d["classe_neu"]: id_d for id_d, d in self.base.defauts.items()}

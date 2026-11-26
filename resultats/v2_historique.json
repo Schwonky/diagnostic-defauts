@@ -1,32 +1,52 @@
 [
   {
     "epoque": 1,
-    "perte": 0.3892643357006212,
-    "exactitude_validation": 0.8174474959612278
+    "perte": 0.4770630755244869,
+    "exactitude_validation": 0.6913295195782584
   },
   {
     "epoque": 2,
-    "perte": 0.2400460491577784,
-    "exactitude_validation": 0.9079159935379645
+    "perte": 0.35229712367466054,
+    "exactitude_validation": 0.8420571733750469
   },
   {
     "epoque": 3,
-    "perte": 0.168135508041208,
-    "exactitude_validation": 0.9095315024232633
+    "perte": 0.3059586017099145,
+    "exactitude_validation": 0.8078632690980844
   },
   {
     "epoque": 4,
-    "perte": 0.1335275566088967,
-    "exactitude_validation": 0.9305331179321487
+    "perte": 0.24059518891042225,
+    "exactitude_validation": 0.8147825783339484
   },
   {
     "epoque": 5,
-    "perte": 0.0898129886481911,
-    "exactitude_validation": 0.9773828756058158
+    "perte": 0.2194965781057126,
+    "exactitude_validation": 0.8713894136094743
   },
   {
     "epoque": 6,
-    "perte": 0.07111066059830289,
-    "exactitude_validation": 0.9838449111470113
+    "perte": 0.1742145557160655,
+    "exactitude_validation": 0.8960015538214899
+  },
+  {
+    "epoque": 7,
+    "perte": 0.15097574827146448,
+    "exactitude_validation": 0.9216767055313937
+  },
+  {
+    "epoque": 8,
+    "perte": 0.11139828182297619,
+    "exactitude_validation": 0.9380509219741181
+  },
+  {
+    "epoque": 9,
+    "perte": 0.08859807511230242,
+    "exactitude_validation": 0.9403141730315423
+  },
+  {
+    "epoque": 10,
+    "perte": 0.07212817969043063,
+    "exactitude_validation": 0.9372746354358228
   }
 ]

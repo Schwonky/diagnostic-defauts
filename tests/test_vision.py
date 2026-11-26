@@ -3,7 +3,7 @@ import pytest
 torch = pytest.importorskip("torch")
 
 from diagnostic.base_connaissances import BaseConnaissances
-from diagnostic.vision import MODELE_NEU, ClassifieurDefauts, creer_resnet
+from diagnostic.vision import MODELE_NEU, ClassifieurDefauts, DetecteurEtat, creer_resnet
 
 CLASSES_NEU = ["crazing", "inclusion", "patches", "pitted_surface", "rolled-in_scale", "scratches"]
 
@@ -27,3 +27,14 @@ def test_classifieur_retourne_des_probabilites():
     resultats = ClassifieurDefauts().predire(Image.new("L", (200, 200), color=128))
     assert len(resultats) == 6
     assert abs(sum(r["probabilite"] for r in resultats) - 1) < 0.01
+
+
+def test_detecteur_utilise_la_taille_du_modele(tmp_path):
+    from PIL import Image
+
+    chemin = tmp_path / "etat.pt"
+    torch.save({"etat": creer_resnet(2, preentraine=False).state_dict(), "classes": ["bon_etat", "endommage"],
+                "taille": 96}, chemin)
+    detecteur = DetecteurEtat(chemin)
+    assert detecteur.transformation(Image.new("RGB", (300, 200))).shape == (3, 96, 96)
+    assert 0 <= detecteur.proba_endommage(Image.new("RGB", (300, 200))) <= 1

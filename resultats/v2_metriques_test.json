@@ -1,9 +1,15 @@
 {
   "Global":{
-    "Images":680,
-    "Exactitude":0.9808823529,
-    "Rappel (endommag\u00e9)":0.9715099715,
-    "Pr\u00e9cision (endommag\u00e9)":0.9912790698
+    "Images":1080,
+    "Exactitude":0.9583333333,
+    "Rappel (endommag\u00e9)":0.9385245902,
+    "Pr\u00e9cision (endommag\u00e9)":0.9682875264
+  },
+  "Source : acier":{
+    "Images":193,
+    "Exactitude":0.9067357513,
+    "Rappel (endommag\u00e9)":0.9259259259,
+    "Pr\u00e9cision (endommag\u00e9)":0.8620689655
   },
   "Source : casting":{
     "Images":195,
@@ -11,16 +17,34 @@
     "Rappel (endommag\u00e9)":0.9914529915,
     "Pr\u00e9cision (endommag\u00e9)":1.0
   },
+  "Source : ecrous":{
+    "Images":48,
+    "Exactitude":0.9166666667,
+    "Rappel (endommag\u00e9)":0.7272727273,
+    "Pr\u00e9cision (endommag\u00e9)":0.8888888889
+  },
+  "Source : joints":{
+    "Images":87,
+    "Exactitude":1.0,
+    "Rappel (endommag\u00e9)":1.0,
+    "Pr\u00e9cision (endommag\u00e9)":1.0
+  },
   "Source : pneus":{
     "Images":274,
-    "Exactitude":0.9598540146,
-    "Rappel (endommag\u00e9)":0.9466666667,
-    "Pr\u00e9cision (endommag\u00e9)":0.9793103448
+    "Exactitude":0.9416058394,
+    "Rappel (endommag\u00e9)":0.9066666667,
+    "Pr\u00e9cision (endommag\u00e9)":0.9855072464
   },
   "Source : roulements":{
     "Images":211,
-    "Exactitude":0.9952606635,
-    "Rappel (endommag\u00e9)":0.9880952381,
+    "Exactitude":1.0,
+    "Rappel (endommag\u00e9)":1.0,
+    "Pr\u00e9cision (endommag\u00e9)":1.0
+  },
+  "Source : vis":{
+    "Images":72,
+    "Exactitude":0.9166666667,
+    "Rappel (endommag\u00e9)":0.6666666667,
     "Pr\u00e9cision (endommag\u00e9)":1.0
   }
 }
