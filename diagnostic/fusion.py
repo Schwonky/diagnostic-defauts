@@ -1,4 +1,4 @@
-"""Moteur de fusion : combine les symptômes (texte) et l'analyse de l'image pour classer les composants suspects.
+"""Fusion : combine les symptômes (texte) et l'analyse de l'image pour classer les composants suspects.
 
 Principe (volontairement simple et explicable) :
 
