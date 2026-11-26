@@ -16,4 +16,8 @@ pillow>=11.0
 ipykernel>=6.29
 pandas>=2.2
 
-# Application web : ajoutée à l'étape 7
+# Application web
+fastapi>=0.115
+uvicorn>=0.30
+python-multipart>=0.0.9
+httpx>=0.27

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnostic de défauts</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 860px; margin: 2rem auto; padding: 0 1rem; color: #222; background: #f6f7f9; }
+  h1 { font-size: 1.5rem; margin-bottom: .2rem; }
+  .sous-titre { color: #666; margin-top: 0; }
+  .carte { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 1rem 1.2rem; margin: 1rem 0; }
+  label { font-weight: 600; display: block; margin: .8rem 0 .3rem; }
+  textarea, select { width: 100%; box-sizing: border-box; padding: .5rem; font: inherit; border: 1px solid #bbb; border-radius: 6px; }
+  textarea { min-height: 5rem; }
+  .conseils { font-size: .9rem; color: #555; background: #eef3fb; border-radius: 6px; padding: .5rem .8rem; }
+  #apercu { max-width: 220px; max-height: 220px; display: none; margin-top: .5rem; border-radius: 6px; }
+  button { margin-top: 1rem; padding: .6rem 1.4rem; font: inherit; font-weight: 600; color: #fff; background: #1f5fbf; border: 0; border-radius: 6px; cursor: pointer; }
+  button:disabled { background: #999; cursor: wait; }
+  .erreur { color: #b00020; font-weight: 600; }
+  .etat { display: inline-block; padding: .2rem .7rem; border-radius: 99px; font-weight: 600; }
+  .bon_etat { background: #dff3e4; color: #1e7a3a; } .incertain { background: #fff1d6; color: #8a5a00; } .endommage { background: #fbe0e0; color: #a11d1d; }
+  .avertissement { color: #8a5a00; }
+  .composant h3 { margin: 0 0 .3rem; }
+  .barre { height: 8px; background: #e6e9ee; border-radius: 4px; overflow: hidden; margin: .3rem 0 .6rem; }
+  .barre div { height: 100%; background: #1f5fbf; }
+  .details { font-size: .85rem; color: #666; }
+  ul { margin: .3rem 0; padding-left: 1.3rem; }
+</style>
+</head>
+<body>
+<h1>Diagnostic de défauts sur des pièces industrielles</h1>
+<p class="sous-titre">Décrivez les symptômes, ajoutez une photo, ou les deux. L'application propose les 3 composants les plus suspects.</p>
+
+<form id="formulaire" class="carte">
+  <label for="description">Symptômes observés</label>
+  <textarea id="description" name="description" placeholder="Ex. : le roulement grince et chauffe beaucoup"></textarea>
+
+  <label for="photo">Photo de la pièce (facultative)</label>
+  <input type="file" id="photo" name="photo" accept="image/*">
+  <img id="apercu" alt="Aperçu de la photo">
+  <p class="conseils">Pour une photo utile : une seule pièce, en gros plan, bien éclairée, qui remplit l'image.</p>
+
+  <label for="composant_photo">Composant photographié (facultatif)</label>
+  <select id="composant_photo" name="composant_photo"><option value="">Je ne sais pas</option></select>
+
+  <button type="submit" id="bouton">Diagnostiquer</button>
+  <p id="erreur" class="erreur"></p>
+</form>
+
+<div id="resultat"></div>
+
+<script>
+const ETATS = { bon_etat: "Bon état", incertain: "État incertain", endommage: "Endommagé" };
+const formulaire = document.getElementById("formulaire");
+const bouton = document.getElementById("bouton");
+const erreur = document.getElementById("erreur");
+const resultat = document.getElementById("resultat");
+const pourcent = p => Math.round(p * 100) + " %";
+const liste = elements => elements.length ? "<ul>" + elements.map(e => `<li>${e}</li>`).join("") + "</ul>" : "<p>—</p>";
+
+// Menu des composants
+fetch("/composants").then(r => r.json()).then(composants => {
+  const menu = document.getElementById("composant_photo");
+  for (const [id, libelle] of Object.entries(composants)) menu.add(new Option(libelle, id));
+});
+
+// Aperçu de la photo choisie
+document.getElementById("photo").addEventListener("change", e => {
+  const apercu = document.getElementById("apercu");
+  const fichier = e.target.files[0];
+  apercu.style.display = fichier ? "block" : "none";
+  if (fichier) apercu.src = URL.createObjectURL(fichier);
+});
+
+formulaire.addEventListener("submit", async e => {
+  e.preventDefault();
+  erreur.textContent = "";
+  resultat.innerHTML = "";
+  bouton.disabled = true;
+  bouton.textContent = "Analyse en cours…";
+  try {
+    const reponse = await fetch("/diagnostic", { method: "POST", body: new FormData(formulaire) });
+    const donnees = await reponse.json();
+    if (!reponse.ok) throw new Error(donnees.detail || "Erreur inconnue");
+    afficher(donnees);
+  } catch (err) {
+    erreur.textContent = err.message;
+  } finally {
+    bouton.disabled = false;
+    bouton.textContent = "Diagnostiquer";
+  }
+});
+
+function afficher(d) {
+  let html = "";
+  if (d.image.etat) {
+    const type = d.image.type_dommage && d.image.etat !== "bon_etat"
+      ? `<p>Type de dommage probable : <b>${d.image.type_dommage.libelle}</b> (${pourcent(d.image.type_dommage.probabilite)})</p>` : "";
+    html += `<div class="carte"><h2>Photo</h2>
+      <span class="etat ${d.image.etat}">${ETATS[d.image.etat]}</span>
+      <span class="details">probabilité « endommagé » : ${pourcent(d.image.p_endommage)}</span>${type}</div>`;
+  }
+  html += `<div class="carte"><h2>Symptômes</h2>
+    <p>Reconnus : ${d.symptomes.join(", ") || "aucun"}</p>
+    ${d.symptomes_nies.length ? `<p>Niés : ${d.symptomes_nies.join(", ")}</p>` : ""}</div>`;
+  for (const a of d.avertissements) html += `<p class="avertissement">⚠ ${a}</p>`;
+  html += `<h2>Composants suspects</h2>`;
+  d.classement.forEach((c, i) => {
+    html += `<div class="carte composant"><h3>${i + 1}. ${c.libelle}</h3>
+      <div class="barre"><div style="width:${Math.round(c.score * 100)}%"></div></div>
+      <p class="details">Score ${c.score.toFixed(2)} — symptômes ${c.score_symptomes.toFixed(2)}, image ${c.score_image.toFixed(2)}
+        (poids : symptômes ${pourcent(d.poids.symptomes)}, image ${pourcent(d.poids.image)})</p>
+      <b>Causes possibles</b>${liste(c.causes)}
+      <b>Vérifications recommandées</b>${liste(c.verifications)}</div>`;
+  });
+  if (!d.classement.length) html += "<p>Aucun composant ne peut être proposé avec ces informations.</p>";
+  resultat.innerHTML = html;
+}
+</script>
+</body>
+</html>
